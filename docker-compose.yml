@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+    app:
+        build:
+            args:
+                user: sammy
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        image: sail-8.1/app
+        ports:
+            - '${APP_PORT:-80}:80'
+        container_name: adobe-shop
+        restart: unless-stopped
+        working_dir: /var/www/html
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - adobe
+
+    mysql:
+        image: mysql:8.0
+        container_name: adobe-shop-mysql
+        environment:
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+        ports:
+            - '${FORWARD_DB_PORT:-3306}:3306'
+        volumes:
+            - ./mysql-data:/var/lib/mysql
+        networks:
+            - adobe
+
+networks:
+    adobe:
+        driver: bridge
