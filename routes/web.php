@@ -15,3 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\Store\StoreController::class, 'index']);
 Route::get('info', [\App\Http\Controllers\Store\StoreController::class, 'info']);
+
+//Auth
+Route::get('admin-login',function (){
+    return view('admin.auth.login');
+});
+
+Route::post('admin-login',[\App\Http\Controllers\Admin\AdminController::class, 'login'])->name(ADMIN_LOGIN);
+
+//Admin Dashboard
+Route::get('/admin',[\App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name(ADMIN_DASHBOARD);
+
+
