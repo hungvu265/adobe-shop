@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\Store\StoreController::class, 'index']);
+Route::get('info', [\App\Http\Controllers\Store\StoreController::class, 'info']);
