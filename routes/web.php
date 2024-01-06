@@ -24,6 +24,6 @@ Route::get('admin-login',function (){
 Route::post('admin-login',[\App\Http\Controllers\Admin\AdminController::class, 'login'])->name(ADMIN_LOGIN);
 
 //Admin Dashboard
-Route::get('/admin',[\App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name(ADMIN_DASHBOARD);
+Route::get('/admin-dashboard',[\App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name(ADMIN_DASHBOARD);
 
 

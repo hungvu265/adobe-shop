@@ -30,7 +30,7 @@
             </label>
             <a class="link-info forget-link" href="##">Forgot your password?</a>
             <label class="form-checkbox-wrapper">
-                <input class="form-checkbox" type="checkbox" required>
+                <input class="form-checkbox" type="checkbox" >
                 <span class="form-checkbox-label">Remember me next time</span>
             </label>
             <button class="form-btn primary-default-btn transparent-btn">Sign in</button>

@@ -1,3 +1,3 @@
 <?php
-define('ADMIN_DASHBOARD', 'admin.dashboard');
-define('ADMIN_LOGIN', 'admin.login');
+define('ADMIN_DASHBOARD', 'admin.index');
+define('ADMIN_LOGIN', 'admin.auth.login');
