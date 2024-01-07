@@ -23,6 +23,9 @@
         <!-- ! Main nav -->
         @include('admin.navbar')
         <!-- ! Main -->
+        <main class="content">
+            @yield('content')
+        </main>
         @include('admin.main')
         <!-- ! Footer -->
         @include('admin.footer')
