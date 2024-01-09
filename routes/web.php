@@ -15,3 +15,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\Store\StoreController::class, 'index']);
 Route::get('info', [\App\Http\Controllers\Store\StoreController::class, 'info']);
+
+//Auth
+Route::get('admin-login',function (){
+    return view('admin.auth.login');
+});
+Route::get('admin-logout',[\App\Http\Controllers\Admin\AdminController::class, 'logout'])->name(ADMIN_LOGOUT);
+Route::post('admin-login',[\App\Http\Controllers\Admin\AdminController::class, 'login'])->name(ADMIN_LOGIN);
+
+//Admin Dashboard
+
+//Admin Management
+Route::prefix('admin')->middleware('admin')->group(function (){
+    Route::prefix('product')->group(function (){
+
+        Route::get('dashboard',[\App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name(ADMIN_DASHBOARD);
+        Route::get('index',[\App\Http\Controllers\Admin\AdminController::class,'index'])->name(ADMIN_PRODUCT_INDEX);
+    });
+});
