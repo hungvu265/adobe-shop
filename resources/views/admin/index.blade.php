@@ -26,7 +26,6 @@
         <main class="content">
             @yield('content')
         </main>
-        @include('admin.main')
         <!-- ! Footer -->
         @include('admin.footer')
     </div>
