@@ -11,11 +11,11 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  ">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item {{ Request::url() === route('store.index') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('store.index') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="shop.html">
+                <li class="nav-item {{ Request::url() == route('store.shop') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('store.shop') }}">
                         Shop
                     </a>
                 </li>
@@ -36,9 +36,7 @@
             <div class="user_option">
                 <a href="">
                     <i class="fa fa-user" aria-hidden="true"></i>
-                    <span>
-                Login
-              </span>
+                    <span>Login</span>
                 </a>
                 <a href="">
                     <i class="fa fa-shopping-bag" aria-hidden="true"></i>

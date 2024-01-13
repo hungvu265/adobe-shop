@@ -30,20 +30,12 @@
                     </div>
                 @endforeach
             </div>
-            <div class="btn-box">
-                <a href="{{ route('store.shop') }}">
-                    View All Products
-                </a>
+
+            <div class="row">
+                <div class="col-lg-12 mt-4" style="display: flex; justify-content: center">
+                    {{ $products->links('vendor.pagination.bootstrap-4') }}
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- why section -->
-    @include('store.component.why_section')
-    <!-- end why section -->
-
-
-    <!-- contact section -->
-    @include('store.component.contact_section')
-    <!-- end contact section -->
 @endsection
