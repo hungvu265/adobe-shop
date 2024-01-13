@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductModelsTable extends Migration
+class CreateComponentModelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateProductModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_models', function (Blueprint $table) {
+        Schema::create('component_models', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('type_id');
-            $table->mediumText('description')->nullable();
-            $table->tinyInteger('status')->default(1);
+            $table->string('product_id');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateProductModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_models');
+        Schema::dropIfExists('component_models');
     }
 }

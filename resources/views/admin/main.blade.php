@@ -1,3 +1,5 @@
+@extends('admin.index')
+@section('content')
 <main class="main users chart-page" id="skip-target">
     <div class="container">
         <h2 class="main-title">Dashboard</h2>
@@ -400,3 +402,4 @@
         </div>
     </div>
 </main>
+@endsection
