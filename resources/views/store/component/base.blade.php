@@ -34,40 +34,17 @@
     @include('store.component.header')
     <!-- end header section -->
 
-    <!-- slider section -->
-{{--    @include('store.component.slider')--}}
-    <!-- end slider section -->
+    @if(Request::url() === route('store.index'))
+        <!-- slider section -->
+        @include('store.component.slider')
+        <!-- end slider section -->
+    @endif
 </div>
 
 
 <!-- content section -->
 @yield('content')
 <!-- end content section -->
-
-
-<!-- saving section -->
-{{--@include('store.component.save_section')--}}
-<!-- end saving section -->
-
-
-<!-- why section -->
-{{--@include('store.component.why_section')--}}
-<!-- end why section -->
-
-
-<!-- gift section -->
-{{--@include('store.component.gift_section')--}}
-<!-- end gift section -->
-
-
-<!-- contact section -->
-{{--@include('store.component.contact_section')--}}
-<!-- end contact section -->
-
-
-<!-- client section -->
-{{--@include('store.component.client_section')--}}
-<!-- end client section -->
 
 
 <!-- info section -->

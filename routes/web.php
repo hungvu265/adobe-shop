@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\Store\StoreController::class, 'index']);
-Route::get('info', [\App\Http\Controllers\Store\StoreController::class, 'info']);
+Route::get('/', [\App\Http\Controllers\Store\StoreController::class, 'index'])->name('store.index');
+Route::get('info', [\App\Http\Controllers\Store\StoreController::class, 'info'])->name('store.info');
+Route::get('shop', [\App\Http\Controllers\Store\StoreController::class, 'shop'])->name('store.shop');
 
 //Auth
 Route::get('admin-login',function (){
