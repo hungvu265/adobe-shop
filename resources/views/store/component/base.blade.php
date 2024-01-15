@@ -26,6 +26,7 @@
     <link href="{{ asset('store/css/style.css') }}" rel="stylesheet" />
     <!-- responsive style -->
     <link href="{{ asset('store/css/responsive.css') }}" rel="stylesheet" />
+    @yield('head')
 </head>
 
 <body>

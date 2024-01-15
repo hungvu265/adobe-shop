@@ -34,9 +34,9 @@
                 </li>
             </ul>
             <div class="user_option">
-                <a href="">
+                <a href="{{ auth('web')->check() ? route('store.info') : route('customer.login.index') }}">
                     <i class="fa fa-user" aria-hidden="true"></i>
-                    <span>Login</span>
+                    <span>{{ auth('web')->user()->name ?? 'Login' }}</span>
                 </a>
                 <a href="">
                     <i class="fa fa-shopping-bag" aria-hidden="true"></i>

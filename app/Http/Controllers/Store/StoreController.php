@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Store;
 
 use App\Http\Controllers\Controller;
 use App\Services\ProductService;
+use Illuminate\Support\Facades\Auth;
 
 class StoreController extends Controller
 {
@@ -23,7 +24,9 @@ class StoreController extends Controller
 
     public function info()
     {
-        return view('store.customer.info');
+        $assign['customer'] = Auth::guard('web')->user();
+
+        return view('store.customer.info', $assign);
     }
 
     public function shop()

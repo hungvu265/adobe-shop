@@ -17,6 +17,11 @@ Route::get('/', [\App\Http\Controllers\Store\StoreController::class, 'index'])->
 Route::get('info', [\App\Http\Controllers\Store\StoreController::class, 'info'])->name('store.info');
 Route::get('shop', [\App\Http\Controllers\Store\StoreController::class, 'shop'])->name('store.shop');
 
+//Customer Auth
+Route::get('login', [\App\Http\Controllers\Store\Customer\Auth\LoginController::class, 'index'])->name('customer.login.index');
+Route::post('login', [\App\Http\Controllers\Store\Customer\Auth\LoginController::class, 'handle'])->name('customer.login.handle');
+
+
 //Auth
 Route::get('admin-login',function (){
     return view('admin.auth.login');

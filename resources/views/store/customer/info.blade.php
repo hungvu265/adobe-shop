@@ -15,15 +15,15 @@
                 <div class="col-8 px-0">
                     <div class="form-group">
                         <label>Name:</label>
-                        <input class="form-control" type="text" placeholder="Name"/>
+                        <input class="form-control" type="text" value="{{ $customer->name ?? '' }}"/>
                     </div>
                     <div>
                         <label>Email:</label>
-                        <input class="form-control" type="email" placeholder="Email"/>
+                        <input class="form-control" type="email" value="{{ $customer->email ?? ''}}"/>
                     </div>
                     <div>
                         <label></label>
-                        <input class="form-control" type="text" placeholder="Phone"/>
+                        <input class="form-control" type="text" value="{{ $customer->phone ?? ''}}"/>
                     </div>
                     <div class="d-flex ">
                         <button>Save</button>
