@@ -32,5 +32,6 @@ Route::prefix('admin')->middleware('admin')->group(function (){
 
         Route::get('dashboard',[\App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name(ADMIN_DASHBOARD);
         Route::get('index',[\App\Http\Controllers\Admin\AdminController::class,'index'])->name(ADMIN_PRODUCT_INDEX);
+        Route::get('', [\App\Http\Controllers\Admin\AdminController::class, 'create'])->name(ADMIN_PRODUCT_CREATE);
     });
 });

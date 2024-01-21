@@ -9,7 +9,7 @@ class TypeModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'type_model';
+    protected $table = 'type_models';
 
     protected $fillable = [
         'price',

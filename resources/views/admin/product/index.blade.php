@@ -31,6 +31,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                    @foreach($products as $product)
                         <tr>
                                 <td ></td>
                                 <td></td>
@@ -59,7 +60,7 @@
                                 </td>
 
                         </tr>
-
+                    @endforeach
                 </tbody>
             </table>
         </div>
