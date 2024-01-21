@@ -5,3 +5,4 @@ define('ADMIN_LOGIN', 'admin.auth.login');
 
 
 define('ADMIN_PRODUCT_INDEX', 'admin.product.index');
+define('ADMIN_PRODUCT_CREATE', 'admin.product.create');
