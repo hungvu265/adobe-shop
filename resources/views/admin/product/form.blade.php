@@ -37,9 +37,11 @@
                 </div>
                 <div class="card-body">
                     <select class="form-select mb-3" name="type" required>
-                        <option selected value="">Chọn loại sản phẩm</option>
+                        <option {{ isset($id) ? '' : 'selected' }}>Chọn loại sản phẩm</option>
                         @foreach($type as $row)
-                            <option value="{{$row->id}}">{{ $row->name }}</option>
+                            <option value="{{$row->id}}" {{ isset($id) && $product->type_id == $row->id ? 'selected' : '' }}>
+                                {{ $row->name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -62,7 +64,7 @@
                 <div class="row mb-3">
                     <div class="col-2">
                         <label for="type">Chọn gói sản phẩm</label>
-                        <select name="type" required >
+                        <select name="" required >
                             <option selected value="">Chọn loại sản phẩm</option>
                                 <option value=""></option>
                         </select>
@@ -79,8 +81,8 @@
                     </div>
                     <div class="col-3 group-img">
                         <label for="img">Chọn hình ảnh</label>
-                        <input name="image" type="file" style="width: 85px" />
-                        <img src="#" class="imgPreview" style="width: 200px">
+                        <input name="image" type="file" style="width: 85px" onchange="previewFile()" />
+                        <img src="#" style="width: 200px" id="img">
                     </div>
                 </div>
             </div>
@@ -94,10 +96,11 @@
                 <div class="row mb-3">
                     <div class="col-2">
                         <label for="type">Chọn gói sản phẩm</label>
+{{--                        @dd($type)--}}
                         <select name="type">
-                            <option selected value="">Chọn loại sản phẩm</option>
+                            <option value="">Chọn loại sản phẩm</option>
                             @foreach($type as $row)
-                                <option value="{{$row->id}}">{{ $row->name }}</option>
+                                <option value="{{$row->id}}" {{ $product->type_id == $row->id ? 'selected' : '' }}>{{ $row->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -105,19 +108,19 @@
                         <label for="amount">Số lượng</label>
                         <br>
                         <input type="number" name="amount" style="width: 100px"
-                               value="{{ isset($id) ? $productComponent->amount : '' }}">
+                               value="{{ $product->productType->amount }}">
                     </div>
                     <div class="col-2">
                         <label for="price">Đơn giá</label>
                         <br>
                         <input type="number" name="price" style="width: 100px"
-                               value="{{ isset($id) ? $productComponent->price : '' }}">
+                               value="{{ $product->productType->price }}">
                     </div>
                     <div class="col-3 group-img">
                         <label for="img">Chọn hình ảnh</label>
-                        <input name="image" type="file" style="width: 85px"/>
-                        <img src="{{ isset($id) ? asset('images/'. $productComponent->image) : '#' }}"
-                             class="imgPreview" style="width: 200px">
+                        <input name="image" type="file" style="width: 85px" onchange="previewFile()" />
+                        <img src="{{ isset($id) ? asset('images/'. $product->component->first()->image) : '#' }}"
+                             style="width: 200px" id="img">
                     </div>
                 </div>
             </div>

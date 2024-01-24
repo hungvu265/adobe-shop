@@ -35,5 +35,6 @@ Route::prefix('admin')->middleware('admin')->group(function (){
         Route::get('', [\App\Http\Controllers\Admin\AdminController::class, 'create'])->name(ADMIN_PRODUCT_CREATE);
         Route::get('{id}', [\App\Http\Controllers\Admin\AdminController::class, 'edit'])->name(ADMIN_PRODUCT_EDIT);
         Route::post('', [\App\Http\Controllers\Admin\AdminController::class, 'store'])->name(ADMIN_PRODUCT_STORE);
+        Route::post('{id}', [\App\Http\Controllers\Admin\AdminController::class, 'update'])->name(ADMIN_PRODUCT_UPDATE);
     });
 });
