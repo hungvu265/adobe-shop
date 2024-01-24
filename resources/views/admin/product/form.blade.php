@@ -61,25 +61,25 @@
             <div class="col-12 mb-3" id="listItem">
                 <div class="row mb-3">
                     <div class="col-2">
-                        <label for="memory">Chọn dung lượng</label>
-                        <select name="memory[]" required >
-                            <option selected value="">Chọn bộ nhớ</option>
+                        <label for="type">Chọn gói sản phẩm</label>
+                        <select name="type" required >
+                            <option selected value="">Chọn loại sản phẩm</option>
                                 <option value=""></option>
                         </select>
                     </div>
                     <div class="col-2">
                         <label for="amount">Số lượng</label>
                         <br>
-                        <input type="number" name="amount[]" style="width: 100px" required />
+                        <input type="number" name="amount" style="width: 100px" required />
                     </div>
                     <div class="col-2">
                         <label for="price">Đơn giá</label>
                         <br>
-                        <input type="number" name="price[]" style="width: 100px" required />
+                        <input type="number" name="price" style="width: 100px" required />
                     </div>
                     <div class="col-3 group-img">
                         <label for="img">Chọn hình ảnh</label>
-                        <input name="image[]" type="file" style="width: 85px" />
+                        <input name="image" type="file" style="width: 85px" />
                         <img src="#" class="imgPreview" style="width: 200px">
                     </div>
                 </div>
@@ -93,43 +93,29 @@
             <div class="col-12 mb-3" id="listItem">
                 <div class="row mb-3">
                     <div class="col-2">
-                        <label for="memory">Chọn dung lượng</label>
-                        <select name="memory[]">
-                            <option selected value="">Chọn bộ nhớ</option>
-                            @foreach($memory as $key => $row)
-                                <option value="{{ $key }}" {{ $productComponent->memory == $key ? 'selected' : '' }}>
-                                    {{ $row }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-2">
-                        <label for="color">Chọn màu</label>
-                        <br>
-                        <select name="color[]">
-                            <option selected value="">Chọn màu</option>
-                            @foreach($color as $row)
-                                <option value="{{ $row->id }}" {{ $productComponent->color_id == $row->id ? 'selected' : '' }}>
-                                    {{ $row->name }}
-                                </option>
+                        <label for="type">Chọn gói sản phẩm</label>
+                        <select name="type">
+                            <option selected value="">Chọn loại sản phẩm</option>
+                            @foreach($type as $row)
+                                <option value="{{$row->id}}">{{ $row->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-2">
                         <label for="amount">Số lượng</label>
                         <br>
-                        <input type="number" name="amount[]" style="width: 100px"
+                        <input type="number" name="amount" style="width: 100px"
                                value="{{ isset($id) ? $productComponent->amount : '' }}">
                     </div>
                     <div class="col-2">
                         <label for="price">Đơn giá</label>
                         <br>
-                        <input type="number" name="price[]" style="width: 100px"
+                        <input type="number" name="price" style="width: 100px"
                                value="{{ isset($id) ? $productComponent->price : '' }}">
                     </div>
                     <div class="col-3 group-img">
                         <label for="img">Chọn hình ảnh</label>
-                        <input name="image[]" type="file" style="width: 85px"/>
+                        <input name="image" type="file" style="width: 85px"/>
                         <img src="{{ isset($id) ? asset('images/'. $productComponent->image) : '#' }}"
                              class="imgPreview" style="width: 200px">
                     </div>
