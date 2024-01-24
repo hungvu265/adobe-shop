@@ -56,11 +56,8 @@ class AdminController extends Controller
 
     public function edit($id){
         $assign['product'] = ProductModel::findOrFail($id);
-        $assign['description'] = $assign['product']->description;
-        $assign['price'] = $assign['product']->price;
-        $assign['amount'] = $assign['product']->amount;
-        $assign['name'] = $assign['product']->name;
-        $assign['type'] = $assign['product']->type;
+        $assign['type'] = TypeModel::all();
+        $assign['id'] = $id;
 
         return view('admin.product.edit', $assign);
 
@@ -68,33 +65,53 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
-        $dataRequest = $request->all();
+        try {
+            $dataRequest = $request->all();
+            $file = $request->file('image') ?? null;
+            dd($file);
+            $status = $dataRequest['status'] ?? null;
 
-        $dataProduct = $dataComponent = $dataType = array();
-        if($dataRequest){
-            $file = $request->file('image');
-            $dataProduct = array(
+            $product = ProductModel::create([
                 'name' => $dataRequest['name'],
+                'type_id' => $dataRequest['type'],
                 'description' => $dataRequest['description'],
-                'type_id' => $dataRequest['type']
-            );
-            $product = ProductModel::create($dataProduct);
-            $dataComponent = array(
-                'image' => $file ? $file->getClientOriginalName() : null,
+                'status' => $status === 'on' ? 1 : 0
+            ]);
+
+            ComponentModel::create([
                 'product_id' => $product->id,
-            );
-            ComponentModel::create($dataComponent);
-            $dataType = array(
-                'price' => $dataRequest['price'],
-                'amount' => $dataRequest['amount'],
-                'name' => $dataRequest['name'],
+                'image' => !empty($file) ? $file->getClientOriginalName() : null
+            ]);
 
-            );
-            TypeModel::create($dataType);
-            return redirect()->back()->with(['Status' => 'success', 'message' => 'Thêm mới thành công']);
-        }else
-            return redirect()->back()->with(['Status' => 'fail', 'message' => 'Thêm mới thất bại']);
-
+            return redirect()->back()->with(['status' => 'success', 'message' => 'Thêm mới thành công']);
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            return redirect()->back()->with(['status' => 'fail', 'message' => 'Thêm mới thất bại']);
+        }
     }
 
+    public function update(Request $request)
+    {
+        try {
+            $dataRequest = $request->all();
+            $status = $dataRequest['status'] ?? null;
+
+            $product = ProductModel::findOrFail($dataRequest['id']);
+            $product->update([
+                'name' => $dataRequest['name'],
+                'type_id' => $dataRequest['type'],
+                'description' => $dataRequest['description'],
+                'status' => $status === 'on' ? 1 : 0
+            ]);
+            $component = $product->component->first();
+            $component->update([
+                'image' => !empty($dataRequest['image']) ? $dataRequest['image']->getClientOriginalName() : null
+            ]);
+
+            return redirect()->back()->with(['status' => 'success', 'message' => 'Cập nhật thành công']);
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            return redirect()->back()->with(['status' => 'fail', 'message' => 'Thêm mới thất bại']);
+        }
+    }
 }

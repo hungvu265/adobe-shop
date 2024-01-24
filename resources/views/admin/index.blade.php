@@ -38,7 +38,7 @@
         <!-- ! Main nav -->
         @include('admin.navbar')
         <!-- ! Main -->
-        <main class="content">
+        <main class="content" style="margin-left: 20px; margin-top: 20px">
             @yield('content')
         </main>
         <!-- ! Footer -->
@@ -57,6 +57,7 @@
 <script src="{{asset('/admin/js1/dashboard.js')}}"></script>
 <script src="{{asset('/admin/js1/js.js')}}"></script>
 <script src="{{asset('/admin/js1/store.js')}}"></script>
+@yield('script')
 </body>
 
 </html>

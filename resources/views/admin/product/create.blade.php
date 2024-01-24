@@ -1,9 +1,6 @@
 @extends('admin.index')
 @section('content')
-        <div class="alert alert-danger alert-dismissible" role="alert">
-
-        </div>
-
+    @include('admin.common.notice')
     <form action="{{route(ADMIN_PRODUCT_STORE)}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row mb-3">
@@ -25,44 +22,24 @@
 @endsection
 @section('script')
     <script>
-        $(document).ready(function() {
-            $('#input-multiple').select2({
-                width: '100%',
-                placeholder: "Chọn tùy chỉnh đặc biệt"
-            });
+        function previewFile() {
+            const preview = document.getElementById("img");
+            const file = document.querySelector("input[type=file]").files[0];
+            const reader = new FileReader();
 
-            $('#addGroupImg').click(function () {
-                var row = $('#listItem').children('.row').first().clone();
+            reader.addEventListener(
+                "load",
+                () => {
+                    console.log(reader)
+                    preview.src = reader.result;
+                },
+                false,
+            );
 
-                //Reset value
-                row.find('img').attr('src', '#');
-                row.find('select').val(null);
-                row.find('input').val(null);
-
-                var button = '<div class="col-1">'+
-                    '<div class="btn btn-danger remove-component">Xóa</div>'+
-                    '</div>';
-                row.append(button).appendTo('#listItem');
-            })
-        });
-
-        $(document).on('change', '.group-img input', function () {
-            let $file = $(this);
-
-            if ($file.prop('files') && $file.prop('files')[0]) {
-                const reader = new FileReader();
-
-                reader.onload = function (e) {
-                    console.log($file);
-                    $file.closest('.group-img').find('.imgPreview').attr('src', e.target.result);
-                };
-
-                reader.readAsDataURL($file.prop('files')[0]);
+            if (file) {
+                reader.readAsDataURL(file);
             }
-        })
+        }
 
-        $(document).on('click', '.remove-component', function () {
-            $(this).closest('.row').remove();
-        });
     </script>
 @endsection

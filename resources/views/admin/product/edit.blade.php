@@ -1,12 +1,7 @@
 @extends('admin.index')
 @section('content')
-{{--    @if($errors->has('name'))--}}
-{{--        <div class="alert alert-danger alert-dismissible" role="alert">--}}
-{{--            {{ $errors->getBag('default')->first('name') }}--}}
-{{--        </div>--}}
-{{--    @endif--}}
-
-    <form action="{{ route(ADMIN_PRODUCT_STORE) }}" method="post">
+    @include('admin.common.notice')
+    <form action="{{ route(ADMIN_PRODUCT_UPDATE, $id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @if(isset($id))
             <input type="hidden" value="{{ $id }}" name="id">
@@ -30,41 +25,24 @@
 @endsection
 @section('script')
     <script>
-        $(document).ready(function() {
-            var id = $('input[name="id"]').val();
+        function previewFile() {
+            const preview = document.getElementById("img");
+            const file = document.querySelector("input[type=file]").files[0];
+            const reader = new FileReader();
 
-            $('#input-multiple').select2({
-                width: '100%',
-                placeholder: "Chọn tùy chỉnh đặc biệt"
-            });
-
-            $.ajax({
-                type: "get",
-                data: {
-                    'id': id
+            reader.addEventListener(
+                "load",
+                () => {
+                    console.log(reader)
+                    preview.src = reader.result;
                 },
-                url: "{{ route(GET_PRODUCT_SPECIAL) }}",
-                success: function (e) {
-                    console.log(e);
-                    $('#input-multiple').val(e);
-                    $('#input-multiple').trigger('change');
-                }
-            });
-        });
+                false,
+            );
 
-        $(document).on('change', '.group-img input', function () {
-            let $file = $(this);
-
-            if ($file.prop('files') && $file.prop('files')[0]) {
-                const reader = new FileReader();
-
-                reader.onload = function (e) {
-                    console.log($file);
-                    $file.closest('.group-img').find('.imgPreview').attr('src', e.target.result);
-                };
-
-                reader.readAsDataURL($file.prop('files')[0]);
+            if (file) {
+                reader.readAsDataURL(file);
             }
-        });
+        }
+
     </script>
 @endsection
