@@ -16,10 +16,10 @@ class CreateProductModelsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('package_id');
-            $table->mediumText('short_description')->nullable();
-            $table->mediumText('description')->nullable();
-            $table->tinyInteger('image')->nullable();
+            $table->integer('package_id');
+            $table->text('short_description')->nullable();
+            $table->text('description')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateProductModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_models');
+        Schema::dropIfExists('products');
     }
 }

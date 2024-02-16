@@ -2,12 +2,12 @@
 
 namespace App\Repositories;
 
-use App\Models\ProductModel;
+use App\Models\Product;
 
 class ProductRepository extends BaseRepository
 {
     public function model(): string
     {
-        return ProductModel::class;
+        return Product::class;
     }
 }

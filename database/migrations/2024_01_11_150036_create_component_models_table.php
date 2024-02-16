@@ -28,6 +28,6 @@ class CreateComponentModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('component_models');
+        Schema::dropIfExists('product_sliders');
     }
 }
