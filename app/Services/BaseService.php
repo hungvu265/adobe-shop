@@ -15,8 +15,13 @@ abstract class BaseService
         return $this->repository->all();
     }
 
-    public function getLimit($limit = 1)
+    public function getLimit($limit = 8)
     {
         return $this->repository->offset(0)->limit($limit)->get();
+    }
+
+    public function find($id)
+    {
+        return $this->repository->find($id);
     }
 }

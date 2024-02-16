@@ -38,7 +38,7 @@
                     <i class="fa fa-user" aria-hidden="true"></i>
                     <span>Login</span>
                 </a>
-                <a href="">
+                <a href="{{ route('store.cart') }}">
                     <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                 </a>
                 <form class="form-inline ">

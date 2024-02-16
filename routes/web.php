@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Store
 Route::get('/', [\App\Http\Controllers\Store\StoreController::class, 'index'])->name('store.index');
 Route::get('info', [\App\Http\Controllers\Store\StoreController::class, 'info'])->name('store.info');
 Route::get('shop', [\App\Http\Controllers\Store\StoreController::class, 'shop'])->name('store.shop');
+Route::get('shop/{id}', [\App\Http\Controllers\Store\StoreController::class, 'detail'])->name('store.detail');
+Route::get('cart', [\App\Http\Controllers\Store\StoreController::class, 'cart'])->name('store.cart');
+Route::get('payment', [\App\Http\Controllers\Store\StoreController::class, 'payment'])->name('store.payment');
+Route::get('add-cart', [\App\Http\Controllers\Store\CartController::class, 'addCart'])->name('cart.add');
 
 //Auth
 Route::get('admin-login',function (){

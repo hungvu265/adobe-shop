@@ -11,7 +11,7 @@
                 @foreach($products as $product)
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="box">
-                            <a href="">
+                            <a href="{{ route('store.detail', $product->id) }}">
                                 <div>
                                     <img style="width: 244px"
                                          src="https://i0.wp.com/accbanquyen.com/wp-content/uploads/2022/01/287625262_1492012301216929_5765182231600040378_n.jpg?w=490&ssl=1%20490w,%20https://i0.wp.com/accbanquyen.com/wp-content/uploads/2022/01/287625262_1492012301216929_5765182231600040378_n.jpg?resize=100%2C100&ssl=1%20100w,%20https://i0.wp.com/accbanquyen.com/wp-content/uploads/2022/01/287625262_1492012301216929_5765182231600040378_n.jpg?resize=64%2C64&ssl=1%2064w"

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vn">
+<html lang="en">
 
 <head>
     <!-- Basic -->
@@ -26,6 +26,7 @@
     <link href="{{ asset('store/css/style.css') }}" rel="stylesheet" />
     <!-- responsive style -->
     <link href="{{ asset('store/css/responsive.css') }}" rel="stylesheet" />
+    <link href="{{ asset('store/css/product.css') }}" rel="stylesheet" />
 </head>
 
 <body>
@@ -56,6 +57,7 @@
 <script src="{{ asset('store/js/bootstrap.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="{{ asset('store/js/custom.js') }}"></script>
+@yield('script')
 
 </body>
 
