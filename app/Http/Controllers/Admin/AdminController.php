@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\ComponentModel;
-use App\Models\ProductModel;
-use App\Models\TypeModel;
+use App\Models\ProductSlider;
+use App\Models\Product;
+use App\Models\Package;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use MongoDB\Driver\Session;
@@ -21,7 +21,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        $products = ProductModel::all();
+        $products = Product::all();
 
         return view('admin.product.index', ['products' => $products]);
     }
@@ -46,17 +46,17 @@ class AdminController extends Controller
 
     public function create()
     {
-        $assign['product'] = ProductModel::all();
-        $assign['description'] = ProductModel::all();
-        $assign['type'] = TypeModel::all();
-        $assign['name'] = TypeModel::all();
-        $assign['amount'] = TypeModel::all();
+        $assign['product'] = Product::all();
+        $assign['description'] = Product::all();
+        $assign['type'] = Package::all();
+        $assign['name'] = Package::all();
+        $assign['amount'] = Package::all();
         return view('admin.product.create', $assign);
     }
 
     public function edit($id){
-        $assign['product'] = ProductModel::findOrFail($id);
-        $assign['type'] = TypeModel::all();
+        $assign['product'] = Product::findOrFail($id);
+        $assign['type'] = Package::all();
         $assign['id'] = $id;
 
         return view('admin.product.edit', $assign);
@@ -71,14 +71,14 @@ class AdminController extends Controller
             dd($file);
             $status = $dataRequest['status'] ?? null;
 
-            $product = ProductModel::create([
+            $product = Product::create([
                 'name' => $dataRequest['name'],
                 'type_id' => $dataRequest['type'],
                 'description' => $dataRequest['description'],
                 'status' => $status === 'on' ? 1 : 0
             ]);
 
-            ComponentModel::create([
+            ProductSlider::create([
                 'product_id' => $product->id,
                 'image' => !empty($file) ? $file->getClientOriginalName() : null
             ]);
@@ -96,7 +96,7 @@ class AdminController extends Controller
             $dataRequest = $request->all();
             $status = $dataRequest['status'] ?? null;
 
-            $product = ProductModel::findOrFail($dataRequest['id']);
+            $product = Product::findOrFail($dataRequest['id']);
             $product->update([
                 'name' => $dataRequest['name'],
                 'type_id' => $dataRequest['type'],

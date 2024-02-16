@@ -5,17 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ComponentModel extends Model
+class ProductSlider extends Model
 {
     use HasFactory;
 
+    protected $table = 'product_sliders';
+
     protected $fillable = [
+        'product_id',
         'image',
-        'product_id'
     ];
 
     public function product(){
-        return $this->belongsTo(ProductModel::class,'product_id', 'id');
+        return $this->belongsTo(Product::class,'product_id', 'id');
     }
 
 }

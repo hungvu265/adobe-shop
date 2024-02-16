@@ -15,11 +15,11 @@ class CreateTypeModelsTable extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
-            $table->string('category_id');
+            $table->integer('category_id');
             $table->string('name');
-            $table->string('status');
-            $table->string('amount');
-            $table->string('price');
+            $table->tinyInteger('status');
+            $table->integer('amount');
+            $table->integer('price');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateTypeModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_models');
+        Schema::dropIfExists('packages');
     }
 }
