@@ -13,7 +13,7 @@ class CreateComponentModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('component_models', function (Blueprint $table) {
+        Schema::create('product_sliders', function (Blueprint $table) {
             $table->id();
             $table->string('product_id');
             $table->string('image')->nullable();
