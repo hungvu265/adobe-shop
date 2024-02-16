@@ -13,11 +13,13 @@ class CreateTypeModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_models', function (Blueprint $table) {
+        Schema::create('packages', function (Blueprint $table) {
             $table->id();
-            $table->string('price');
+            $table->string('category_id');
             $table->string('name');
+            $table->string('status');
             $table->string('amount');
+            $table->string('price');
             $table->timestamps();
         });
     }
