@@ -1,49 +1,72 @@
-@extends('store.component.base')
-@section('content')
-    <section class="shop_section layout_padding">
-        <div class="container">
-            <div class="heading_container heading_center">
-                <h2>
-                    Latest Products
-                </h2>
-            </div>
-            <div class="row">
-                @foreach($products as $product)
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="box">
-                            <a href="{{ route('store.detail', $product->id) }}">
-                                <div>
-                                    <img style="width: 244px"
-                                         src="https://i0.wp.com/accbanquyen.com/wp-content/uploads/2022/01/287625262_1492012301216929_5765182231600040378_n.jpg?w=490&ssl=1%20490w,%20https://i0.wp.com/accbanquyen.com/wp-content/uploads/2022/01/287625262_1492012301216929_5765182231600040378_n.jpg?resize=100%2C100&ssl=1%20100w,%20https://i0.wp.com/accbanquyen.com/wp-content/uploads/2022/01/287625262_1492012301216929_5765182231600040378_n.jpg?resize=64%2C64&ssl=1%2064w"
-                                         alt="">
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-12">
-                                        <h6 style="text-align: center">{{ $product->name }}</h6>
-                                    </div>
-                                    <div class="col-lg-12 mt-3">
-                                        <h6 class="text-danger text-center">$200</h6>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-            <div class="btn-box">
-                <a href="{{ route('store.shop') }}">
-                    View All Products
-                </a>
-            </div>
-        </div>
-    </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediaStream Recording API Example</title>
+</head>
+<body>
+<h1>MediaStream Recording API Example</h1>
+<button id="startBtn">Start Recording</button>
+<button id="stopBtn" disabled>Stop Recording</button>
+<audio id="audioPlayback" controls></audio>
 
-    <!-- why section -->
-    @include('store.component.why_section')
-    <!-- end why section -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const audioPlayback = document.getElementById('audioPlayback');
 
+        let mediaRecorder;
+        let audioChunks = [];
 
-    <!-- contact section -->
-    @include('store.component.contact_section')
-    <!-- end contact section -->
-@endsection
+        startBtn.addEventListener('click', async () => {
+            // Yêu cầu quyền truy cập micro
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                startRecording(stream);
+            } catch (err) {
+                console.error('Error accessing microphone', err);
+            }
+        });
+
+        stopBtn.addEventListener('click', () => {
+            if (mediaRecorder) {
+                mediaRecorder.stop();
+            }
+        });
+
+        function startRecording(stream) {
+            mediaRecorder = new MediaRecorder(stream);
+
+            mediaRecorder.onstart = () => {
+                audioChunks = [];
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+            };
+
+            mediaRecorder.ondataavailable = (event) => {
+                if (event.data.size > 0) {
+                    audioChunks.push(event.data);
+                }
+            };
+
+            mediaRecorder.onstop = () => {
+                console.log(audioChunks)
+                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                console.log(audioBlob)
+                const audioUrl = URL.createObjectURL(audioBlob);
+                audioPlayback.src = audioUrl;
+                console.log(audioUrl)
+
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+            };
+
+            mediaRecorder.start();
+        }
+    });
+
+</script>
+</body>
+</html>

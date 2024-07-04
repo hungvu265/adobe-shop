@@ -17,9 +17,9 @@ class StoreController extends Controller
 
     public function index()
     {
-        $assign['products'] = $this->productService->getLimit(config('configuration.paginate_default'));
+//        $assign['products'] = $this->productService->getLimit(config('configuration.paginate_default'));
 
-        return view('store.index', $assign);
+        return view('store.index');
     }
 
     public function info()
