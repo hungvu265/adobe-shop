@@ -54,6 +54,7 @@
             mediaRecorder.onstop = () => {
                 console.log(audioChunks)
                 const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                var file = new File([audioBlob], "name", {type: ""});
                 console.log(audioBlob)
                 const audioUrl = URL.createObjectURL(audioBlob);
                 audioPlayback.src = audioUrl;
