@@ -1,0 +1,46 @@
+// eventBus.js
+import mitt from 'mitt';
+
+const eventBus = mitt();
+
+export default eventBus;
+
+// component A
+<template>
+  <button @click="emitEvent">Emit Event</button>
+</template>
+
+<script setup>
+import eventBus from './eventBus';
+
+const emitEvent = () => {
+  eventBus.emit('my-event', { message: 'Hello from Component A' });
+};
+</script>
+
+
+// Component B
+<template>
+  <div>{{ eventData }}</div>
+</template>
+
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue';
+import eventBus from './eventBus';
+
+const eventData = ref('');
+
+const handleEvent = (data) => {
+  eventData.value = data.message;
+};
+
+onMounted(() => {
+  eventBus.on('my-event', handleEvent);
+});
+
+onUnmounted(() => {
+  eventBus.off('my-event', handleEvent);
+});
+</script>
+
+
