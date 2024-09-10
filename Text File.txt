@@ -1,0 +1,26 @@
+await forEach(scenes.value, async (scene, key) => {
+    // Ẩn artist trong layer và scale layer thành hd
+    const index = findIndex(layers.value, e => e._id === scene.id)
+    const artist = layers.value[index].children[1]
+
+    // Convert scene preview to image file
+    const blob = await dataURItoFile(layers.value[index].toDataURL({width: sceneHd.width, height: sceneHd.height, mimeType: 'image/png'}))
+    const file = await new File([blob], 'file.png', { type: 'image/png' })
+
+    const StateIndex = findIndex(state.state, e => e.id === scene.id)
+    console.log(file)
+    data.push({
+      artist_info: state.state[StateIndex].artist.item,
+      layer_attr: {id: layers.value[index]._id, children: layers.value[index].children},
+      voice_content: state.state[StateIndex].voice.content,
+      image_preview: file,
+      background_image: state.state[StateIndex].backgroundImage,
+      audio: state.state[StateIndex].content,
+      content_type: state.state[StateIndex].contentType,
+      duration: scene.duration
+    })
+  })
+
+  await formData.append('data', JSON.stringify(data))
+
+  const res = await AiGenarate.saveProject(formData)
