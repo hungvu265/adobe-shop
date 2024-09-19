@@ -1,0 +1,43 @@
+-------------------------------------------------------------------------------------------------
+        try {
+            $link = $request->input('link');
+
+            $client = new Client();
+            $res = $client->post('https://viettelai.vn/tts/speech_synthesis', [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => '*/*'
+                ],
+                'json' => [
+                    "text" => "Xin chào đồng chí",
+                    "speed" => 1.0,
+                    "token" => "d64c36670bfb595014a4581a6949e1fa",
+                    "tts_return_option" => 3,
+                    "voice" => "hn-quynhanh",
+                    "without_filter" => false
+                ]
+            ]);
+
+            $audioContent = $res->getBody()->getContents();
+
+            // Return the audio content as a file response
+            return response($audioContent)
+                ->header('Content-Type', 'audio/mpeg')  // Set the correct MIME type
+                ->header('Content-Disposition', 'inline; filename="audio.mp3"');
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'Fail'], 500);
+        }
+-------------------------------------------------------------------------------------------------
+            fetch('/api/get-audio', {
+                method: 'post'
+            })
+                .then(response => response.blob())
+                .then(blob => {
+                    console.log(blob)
+                    const audioUrl = URL.createObjectURL(blob);
+                    // const audioPlayer = document.getElementById('audioPlayer');
+                    // audioPlayer.src = audioUrl;
+                    const audioPlayer = new Audio()
+                    audioPlayer.src = audioUrl
+                    audioPlayer.play()
+                })
