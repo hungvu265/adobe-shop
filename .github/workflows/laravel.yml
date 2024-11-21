@@ -23,7 +23,7 @@ jobs:
     - name: Show docker
       run: docker ps -a
     - name: Ssh to docker
-      run: docker exec -t test /bin/bash
+      run: docker exec test /bin/bash
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
