@@ -3,3 +3,9 @@
       "control_mode": "Là các thuật toán khác nhau để tạo ra bức ảnh mới từ ảnh đầu vào.",
       "main_color": "Phần mềm sẽ ưu tiên sử dụng màu này khi sinh ra bức ảnh.",
       "prompt_type": "Cho phép lựa chọn các loại ảnh đầu ra: Ảnh truyện tranh, ảnh hoạt hình, ảnh phong cảnh, ảnh đơn sắc v.v..."
+
+	•	Seed: “Add variety to the generated images while keeping other parameters unchanged. Selecting ‘Random’ will create different images each time, while ‘Fixed’ ensures the same image is generated.”
+	•	Guidance Scale: “Determines how closely the generated image matches the user’s description.”
+	•	Control Mode: “Specifies different algorithms to create a new image based on the input image.”
+	•	Main Color: “The software will prioritize this color when generating the image.”
+	•	Prompt Type: “Allows you to choose the style of the output image, such as comic-style, cartoon, landscape, monochrome, etc.”
