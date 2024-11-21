@@ -2,9 +2,9 @@ name: Laravel
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   laravel-tests:
@@ -17,7 +17,13 @@ jobs:
         php-version: '8.0'
     - uses: actions/checkout@v4
     - name: Build docker
-      name: docker build -t adobe-shop:lastest .
+      run: docker build -t test:lastest .
+    - name: Run docker 
+      run: docker run -p 8095:8095 --name test -d test:lastest
+    - name: Show docker
+      run: docker ps -a
+    - name: Ssh to docker
+      run: docker exec -t test /bin/bash
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
