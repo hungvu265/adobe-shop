@@ -1,0 +1,26 @@
+version: '2'
+services:
+  mongos:
+    image: hub.vtcc.vn:8989/mongo:latest
+    container_name: mongos
+    command: mongos --port 27017 --configdb rs0/mongocfg:27017 --bind_ip_all
+    ports:
+      - 27022:27017
+  mongocfg:
+    image: hub.vtcc.vn:8989/mongo:latest
+    container_name: mongocfg
+    command: mongod --port 27017 --configsvr --replSet rs0 --bind_ip_all
+
+  mongodb1:
+    image: hub.vtcc.vn:8989/mongo:latest
+    container_name: mongodb1
+    command: mongod --port 27017 --shardsvr --replSet rs-shard-01 --bind_ip_all
+    ports:
+      - 27027:27017
+
+  mongodb2:
+    image: hub.vtcc.vn:8989/mongo:latest
+    container_name: mongodb2
+    command: mongod --port 27017 --shardsvr --replSet rs-shard-02 --bind_ip_all
+    ports:
+      - 27037:27017
