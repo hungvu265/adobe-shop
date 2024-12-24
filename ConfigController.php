@@ -38,10 +38,10 @@ class ConfigController extends Controller {
             $without_filter = $request->get('without_filter');
             $speed = $request->get('speed');
             $tts_return_option = $request->get('tts_return_option');
-            $responses = sendRequest('https://staging.viettelai.vn/tts/speech_synthesis', [
+            $responses = sendRequest('https://viettelai.vn/tts/speech_synthesis', [
                 'text' => $text ,
                 'voice' => $voice,
-                'token' => 'eba13b1a8372519f49139b8be5410e80',
+                'token' => 'd64c36670bfb595014a4581a6949e1fa',
                 'without_filter' => $without_filter,
                 'speed' => $speed,
                 'tts_return_option' => $tts_return_option,
