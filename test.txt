@@ -1,2 +1,12 @@
-https://viettelai.vn/tts/speech_synthesis
-d64c36670bfb595014a4581a6949e1fa
+curl --location 'https://viettelai.vn/tts/speech_synthesis' \
+--header 'Access-Control-Allow-Origin: *' \
+--header 'Accept: */*' \
+--header 'Content-Type: application/json' \
+--data '{
+    "text": "Nhập  nội dung văn bản xin chào đồng bàn",
+    "speed": 1.0,
+    "token": "d64c36670bfb595014a4581a6949e1fa",
+    "tts_return_option": 2,
+    "voice": "hn-quynhanh",
+    "without_filter": false
+}'
