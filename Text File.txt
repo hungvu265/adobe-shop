@@ -24,3 +24,6 @@ await forEach(scenes.value, async (scene, key) => {
   await formData.append('data', JSON.stringify(data))
 
   const res = await AiGenarate.saveProject(formData)
+
+
+https://docs.google.com/spreadsheets/d/1xZg3W-ZfycTBCZ71HcgoYzT0Gl7PJUMAQiFPBf_y94w/edit?gid=1533799167#gid=1533799167
